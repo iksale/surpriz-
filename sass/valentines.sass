@@ -1,0 +1,215 @@
+@import bourbon
+
+@import mixins
+
+$pink-light: #e57f95
+$pink-med: #a86d85
+$pink-dark: #cc5a6d
+$chocolate: #61432e
+$white: #fffaf6
+
+$bg-color: $pink-dark
+$bg-color-end: $chocolate
+$text-color: $white
+$link-color: $chocolate
+$heart-wrapper-color: $chocolate
+$heart-color: $pink-light
+$circle-size: 300px
+$heart-size-start: 80px
+$heart-size-end: 240px
+
+$speed-quick: 100ms
+$speed-med: 250ms
+$speed-slow: 2s
+
+body
+    background-color: $bg-color
+    color: $text-color
+    font:
+        family: "Great Vibes", serif
+        size: 100%
+        weight: normal
+    line-height: 1.4
+    text-align: center
+    @include font-smoothing
+    -webkit-user-select: none
+    -webkit-user-drag: none
+    -webkit-tap-highlight-color: rgba(#000, 0)
+    user-select: none
+    user-drag: none
+    tap-highlight-color: rgba(#000, 0)
+
+    // Hide text for different interactions.
+    &.force-touch .no-force-touch,
+    &:not(.force-touch) .force-touch
+        display: none
+
+h1
+    font:
+        size: 2em
+
+p
+    font:
+        size: 1.4em
+    margin-top: 0
+
+a
+    color: $link-color
+    text-decoration: underline
+    @include hover
+        text-decoration: none
+
+#loading
+    font:
+        family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif
+        weight: bold
+        style: italic
+        size: 40px
+    position: absolute
+    top: 50%
+    left: 0
+    width: 100%
+
+@include keyframes(load-in)
+    from
+        @include transform(scale3d(0, 0, 1))
+        opacity: 0
+    to
+        @include transform(scale3d(1, 1, 1))
+        opacity: 1
+
+@include keyframes(fade-in)
+    from
+        opacity: 0
+    to
+        opacity: 1
+
+#main
+    @include animation(load-in ($speed-quick * 2) forwards)
+
+.text-end p
+    margin-bottom: 0
+
+.page-valentines
+    font:
+        size: 20px
+
+#valentines
+    position: relative
+    height: $circle-size
+    width: $circle-size
+    margin: auto
+    max-width: 100%
+
+.circle
+    background-color: $heart-wrapper-color
+    border-radius: 100%
+    height: 100%
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
+
+.fa
+    position: absolute
+    top: 50%
+    left: 50%
+    @include transform(translate3d(-50%, -50%, 0))
+    height: $heart-size-start
+    width: $heart-size-start
+    svg
+        fill: $heart-color
+        width: 100%
+        height: 100%
+
+// Animation.
+
+@include keyframes(hide)
+    to
+        width: 0
+        height: 0
+
+@include keyframes(ba-boom)
+    to
+        opacity: 1
+        @include transform(scale3d(1.4, 1.4, 1))
+        @include filter(drop-shadow(0 0 10px rgba(#000, 0.4)))
+
+@include keyframes(heartbeat)
+    to
+        @include transform(translate3d(-50%, -50%, 0) scale3d(1.4, 1.4, 1))
+        @include filter(drop-shadow(0 0 10px rgba(#000, 0.4)))
+
+body,
+.circle,
+.text-during
+    @include transition(all $speed-quick ease-out)
+
+.text-during,
+.text-beat
+    opacity: 0
+
+.fa
+    @include transition(all)
+    @include transition-duration($speed-quick)
+    @include transition-timing-function(ease-out)
+    @include transform-origin(50% 50%)
+
+.code-link
+    opacity: 0
+    @include animation(fade-in 400ms 1s forwards)
+
+body:not(.end)
+    .text-end
+        display: none
+
+body:not(.reset)
+    .text-reset
+        display: none
+
+body:not(.start):not(.end)
+    .fa-heart
+        display: none
+
+body
+    &.start,
+    &.end
+        .fa-heart-o
+            display: none
+
+body.start
+    .text-during
+        opacity: 1
+    &.no-force-touch
+        .fa
+            @include transition-duration($speed-slow)
+            @include transition-timing-function(cubic-bezier(0.75, 0.01, 0.99, 0.76))
+            height: $heart-size-end
+            width: $heart-size-end
+
+body.end
+    .text-during,
+    .text-start,
+    .text-beat
+        display: none
+    .circle
+        @include transform(scale3d(10, 10, 1))
+        @include transform(scale3d(0, 0, 1))
+    .fa
+        @include transition-duration($speed-quick)
+        @include animation(heartbeat $speed-med $speed-quick infinite alternate)
+        height: $heart-size-start
+        width: $heart-size-start
+    .fa-heart-o
+        display: none
+
+body.reset
+    .text-during
+        display: none
+
+body.beat
+    &.no-force-touch
+        .fa
+            @include animation(heartbeat $speed-med 0ms 2 alternate)
+        .text-beat
+            @include animation(ba-boom $speed-med 0ms 2 alternate)

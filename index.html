@@ -1,53 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web developer and Pianist – Henry Blyth</title>
+    <title>❗️💕💕❗️💕💕❗️💕💕</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="css/valentines.css">
     <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 </head>
-<body>
 
+<audio id="music" style="display:none;">
+<source src="1.mp3" type="audio/mpeg">
+</audio>
+<button	id="baslat">Başlayalım ilk önce buraya tıklaman gerek :) </button>
     <div class="wrapper page-valentines">
         <div class="inner">
 
-            <p id="loading">Loading</p>
+            <p id="loading">Yukleniyor..</p>
 
             <div id="main" style="display: none" class="page-body">
                 <div class="text-start">
-                    <h1>Touch me...</h1>
+                    <h1>Sonra Buraya tıklamayı unutma :)...</h1>
                 </div>
 
                 <div class="text-during">
-                    <p class="no-force-touch">keep going...</p>
-                    <p class="force-touch">harder...</p>
+                    <p class="no-force-touch">devam et...</p>
+                    <p class="force-touch">daha fazla...</p>
                 </div>
 
                 <div class="text-reset">
-                    <p>don't stop!</p>
+                    <p>durma!</p>
                 </div>
 
                 <div class="text-end">
-                    <h1>Happy Valentines Day</h1>
-                    <p>I love you!</p>
-                </div>
+                    <h1><i class="em em-rose" aria-role="presentation" aria-label="ROSE"></i>Seher Hanim<i class="em em-rose" aria-role="presentation" aria-label="ROSE"></i></h1>
+                    <p><i class="em em-revolving_hearts" aria-role="presentation" aria-label="REVOLVING HEARTS"></i>Seviliyorsunuz  <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
 
+<i class="em em-revolving_hearts" aria-role="presentation" aria-label="REVOLVING HEARTS"></i></p>
+                </div>
+				
                 <div id="valentines">
                     <div id="circle" class="circle"></div>
                     <i id="heart" class="fa"></i>
                 </div>
-
-                <p class="code-link text-end">
-                    See the code <a href="http://github.com/henrahmagix/valentines">here</a>
+				
+				 <p class="code-link text-end">
+                    Bazen ihtiyaç duyuyor insan, sevildiğini bilmeye / İlhan Berk
                 </p>
+
+               
             </div>
 
         </div>
     </div>
+	
 
-    <script src="lib/pressure/dist/pressure.min.js"></script>
+	    <script src="2.js"></script>
+
+	<script src="lib/pressure/dist/pressure.min.js"></script>
     <script src="valentines.js"></script>
+
+
+<script type="text/javascript" src="http://emreceyhan.net/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+    $("#baslat").click(function () {
+        var audio = document.getElementById("music");
+        audio.play();
+		 $(this).hide();
+    })
+    $("#durdur").click(function () {
+        var audio = document.getElementById("music");
+        audio.pause();
+    })
+})
+</script>
+
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
